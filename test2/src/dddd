@@ -1,0 +1,39 @@
+import React, { useState } from 'react';
+    import StarBorderIcon from '@mui/icons-material/StarBorder';
+    import Button from '@mui/material/Button';
+
+const App = () => {
+  const [starRating, setStarRating] = useState(0);
+
+  const handleAddClick = () => {
+    const newRating = starRating < 5 ? starRating + 1 : starRating;
+    setStarRating(newRating);
+  };
+
+  const handleRemoveClick = () => {
+    const newRating = starRating > 0 ? starRating - 1 : starRating;
+    setStarRating(newRating);
+  };
+
+  return (
+    <div>
+      {[...Array(starRating)].map((index) => (
+        <StarBorderIcon key={index} style={{ color: 'red' }} />
+      ))}
+      {[...Array(5 - starRating)].map((index) => (
+        <StarBorderIcon key={index} style={{ color: 'black' }} />
+      ))}
+
+      <div>
+        <Button variant="contained" onClick={handleAddClick}>
+          Add
+        </Button>
+        <Button variant="contained" onClick={handleRemoveClick}>
+          Remove
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default App;
